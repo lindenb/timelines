@@ -1,0 +1,3 @@
+<timelines xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="https://github.com/lindenb/timelines/">
+ <xi:include href="timelines.001.xml" xpointer="xmlns(t=https://github.com/lindenb/timelines/)xpointer(/t:timelines/*)" parse="xml"/> 
+</timelines>
