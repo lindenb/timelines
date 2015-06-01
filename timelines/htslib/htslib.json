@@ -1,0 +1,14 @@
+
+{
+"timeline":
+   {
+   "headline":"<label>Htslib</label>",
+   "type":"default",
+   "text":"<description>History of the <a href=\"http://www.htslib.org/doc/\">SAM/BAM/VCF specification</a></description>",
+   "date":[{"headline":"<label>SAM/BAM format v1.5 extensions for <i>de novo</i> assemblies</label>","text":"Herein we describe clarifications and additions in version 1.5 of the specification to facilitate storing de novo sequence alignments [<a href=\"http://dx.doi.org/10.1101/020024\">http://dx.doi.org/10.1101/020024</a>]","startDate":"2015,05,29"}
+,{"headline":"<label>Efficient storage of high throughput DNA sequencing data using reference-based compression.</label>","text":" In this paper we present a new reference-based compression method that efficiently compresses DNA sequences for storage. Our approach works for resequencing experiments that target well-studied genomes. We align new sequences to a reference genome and then encode the differences between the new sequence and the reference genome for storage.  [<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/21245279\">http://www.ncbi.nlm.nih.gov/pubmed/21245279</a>]","startDate":"2011,05,21"}
+,{"headline":"<label>The variant call format and VCFtools.</label>","text":"The variant call format (VCF) is a generic format for storing DNA polymorphism data such as SNPs, insertions, deletions and structural variants, together with rich annotations. [<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/21653522\">http://www.ncbi.nlm.nih.gov/pubmed/21653522</a>]","startDate":"2011,08,01"}
+,{"headline":"<label>The Sequence Alignment/Map format and SAMtools.</label>","text":"The Sequence Alignment/Map (SAM) format is a generic alignment format for storing read alignments against reference sequences, supporting short and long reads (up to 128 Mbp) produced by different sequencing platforms. It is flexible in style, compact in size, efficient in random access and is the format in which alignments from the 1000 Genomes Project are released.  [<a href=\"http://www.ncbi.nlm.nih.gov/pubmed/19505943\">http://www.ncbi.nlm.nih.gov/pubmed/19505943</a>]","startDate":"2009,08,15"}
+]
+   }
+}

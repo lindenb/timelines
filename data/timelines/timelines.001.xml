@@ -1,4 +1,31 @@
 <timelines xmlns:xi="http://www.w3.org/2001/XInclude" xmlns="https://github.com/lindenb/timelines/">
  <timeline id="cnv">
+ </timeline>
+  <timeline id="htslib">
+  	<label>Htslib</label>
+  	<description>History of the <a href="http://www.htslib.org/doc/">SAM/BAM/VCF specification</a></description>
+  	<event date="2015,05,29" id="doi:10.1101/020024">
+  		<url>http://dx.doi.org/10.1101/020024</url>
+  		<label>SAM/BAM format v1.5 extensions for <i>de novo</i> assemblies</label>
+  		<description>Herein we describe clarifications and additions in version 1.5 of the specification to facilitate storing de novo sequence alignments</description>
+  	</event>
+  	
+  	<event date="2011,05,21" id="pmid:21245279">
+  		<url>http://www.ncbi.nlm.nih.gov/pubmed/21245279</url>
+  		<label>Efficient storage of high throughput DNA sequencing data using reference-based compression.</label>
+  		<description> In this paper we present a new reference-based compression method that efficiently compresses DNA sequences for storage. Our approach works for resequencing experiments that target well-studied genomes. We align new sequences to a reference genome and then encode the differences between the new sequence and the reference genome for storage. </description>
+  	</event>  	
+  	
+  	<event date="2011,08,01" id="pmid:21653522">
+  		<url>http://www.ncbi.nlm.nih.gov/pubmed/21653522</url>
+  		<label>The variant call format and VCFtools.</label>
+  		<description>The variant call format (VCF) is a generic format for storing DNA polymorphism data such as SNPs, insertions, deletions and structural variants, together with rich annotations.</description>
+  	</event>
+  	
+  	<event date="2009,08,15" id="pmid:19505943">
+  		<url>http://www.ncbi.nlm.nih.gov/pubmed/19505943</url>
+  		<label>The Sequence Alignment/Map format and SAMtools.</label>
+  		<description>The Sequence Alignment/Map (SAM) format is a generic alignment format for storing read alignments against reference sequences, supporting short and long reads (up to 128 Mbp) produced by different sequencing platforms. It is flexible in style, compact in size, efficient in random access and is the format in which alignments from the 1000 Genomes Project are released. </description>
+  	</event>
  </timeline> 
 </timelines>

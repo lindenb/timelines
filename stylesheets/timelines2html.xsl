@@ -7,6 +7,11 @@
 
 <xsl:output method="text" />
 
+<xsl:template match="/">
+<xsl:apply-templates select="*"/>
+
+</xsl:template>
+
 <xsl:template match="t:timelines">
   <xsl:apply-templates select="t:timeline"/>
   <xsl:document href="timelines/index.html" method="html">
@@ -28,6 +33,7 @@
 </xsl:template>
 
 <xsl:template match="t:timeline">
+<xsl:message>Processing <xsl:value-of select="count(@id)"/></xsl:message>
 <xsl:variable name="htmllout" select="concat('timelines/',@id,'/index.html')"/>
 <xsl:document href="{$htmllout}" method="html">
 <html lang="en">
@@ -70,13 +76,30 @@
 {
 "timeline":
    {
-   "headline":"",
-   "text":"",
-   "date":[]
+   "headline":"<xsl:apply-templates select="." mode="label.json"/>",
+   "type":"default",
+   "text":"<xsl:apply-templates select="." mode="description.json"/>",
+   "date":[<xsl:for-each select="t:event">
+   	<xsl:if test="position() &gt; 1">,</xsl:if>
+   	<xsl:apply-templates select="."/>
+   	</xsl:for-each>]
    }
 }
-</xsl:template>
 </xsl:document>
+</xsl:template>
+
+
+<xsl:template match="t:event">{"headline":"<xsl:apply-templates select="." mode="label.json"/>","text":"<xsl:apply-templates select="." mode="description"/><xsl:apply-templates select="t:url"/>","startDate":"<xsl:value-of select="@date"/>"}
+</xsl:template>
+
+<xsl:template match="t:url">
+<xsl:text> [&lt;a href=\"</xsl:text>
+<xsl:value-of select="."/>
+<xsl:text>\"&gt;</xsl:text>
+<xsl:value-of select="."/>
+<xsl:text>&lt;/a&gt;]</xsl:text>
+</xsl:template>
+
 
 
 <xsl:template match="*" mode="id">
@@ -95,12 +118,71 @@
 	</xsl:choose>
 </xsl:template>
 
+<xsl:template match="*" mode="label.json">
+	<xsl:choose>
+		<xsl:when test="t:label"><xsl:apply-templates select="t:label" mode="json"/></xsl:when>
+		<xsl:when test="@label"><xsl:apply-templates select="@label"  mode="json"/></xsl:when>
+		<xsl:otherwise><xsl:apply-templates select="." mode="id" /></xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
 <xsl:template match="*" mode="description">
 	<xsl:choose>
 		<xsl:when test="t:description"><xsl:apply-templates select="t:description"/></xsl:when>
 		<xsl:when test="@description"><xsl:apply-templates select="@description"/></xsl:when>
 		<xsl:otherwise><xsl:apply-templates select="." mode="label"/></xsl:otherwise>
 	</xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="description.json">
+	<xsl:choose>
+		<xsl:when test="t:description"><xsl:apply-templates select="t:description" mode="json"/></xsl:when>
+		<xsl:when test="@description"><xsl:apply-templates select="@description" mode="json"/></xsl:when>
+		<xsl:otherwise><xsl:apply-templates select="." mode="label.json"/></xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+
+<xsl:template match="*" mode="json">
+<xsl:text>&lt;</xsl:text>
+<xsl:value-of select="name(.)"/>
+<xsl:for-each select="@*">
+	<xsl:text> </xsl:text>
+	<xsl:value-of select="name(.)"/>
+	<xsl:text>=\"</xsl:text>
+	<xsl:apply-templates select="." mode="json"/>
+	<xsl:text>\"</xsl:text>
+</xsl:for-each>
+
+<xsl:choose>
+	<xsl:when test="count(node())&gt;0">
+		<xsl:text>&gt;</xsl:text>
+		<xsl:apply-templates mode="json"/>
+		<xsl:text>&lt;/</xsl:text>
+		<xsl:value-of select="name(.)"/>
+		<xsl:text>&gt;</xsl:text>
+	</xsl:when>
+	<xsl:otherwise>
+		<xsl:text>/&gt;</xsl:text>
+	</xsl:otherwise>
+</xsl:choose>
+</xsl:template>
+
+<xsl:template match="text()" mode="json">
+<xsl:value-of select="."/>
+</xsl:template>
+
+
+<xsl:template match="t:a|t:b|t:i">
+<xsl:variable name="name" select="name(.)"/>
+<xsl:element name="{$name}">
+<xsl:for-each select="@*">
+	<xsl:variable name="name2" select="name(.)"/>
+	<xsl:attribute name="{$name2}">
+		<xsl:value-of select="."/>
+	</xsl:attribute>
+</xsl:for-each>
+<xsl:apply-templates/>
+</xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>
