@@ -1,3 +1,6 @@
 [submodule "TimelineJS"]
 	path = TimelineJS
 	url = https://github.com/NUKnightLab/TimelineJS.git
+[submodule "TimelineJS3"]
+	path = TimelineJS3
+	url = https://github.com/NUKnightLab/TimelineJS3
